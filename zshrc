@@ -63,3 +63,6 @@ setopt CORRECT CORRECT_ALL
 
 # Enable extended globbing
 setopt EXTENDED_GLOB
+
+# Load RVM into a shell session.
+[[ -s "/Users/fire/.rvm/scripts/rvm" ]] && source "/Users/fire/.rvm/scripts/rvm"  
