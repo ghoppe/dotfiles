@@ -65,7 +65,7 @@ setopt CORRECT CORRECT_ALL
 setopt EXTENDED_GLOB
 
 # Load RVM into a shell session.
-[[ -s "/Users/fire/.rvm/scripts/rvm" ]] && source "/Users/fire/.rvm/scripts/rvm"  
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  
 #autojump
 #Copyright Joel Schaerer 2008, 2009
 #This file is part of autojump
