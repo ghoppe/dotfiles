@@ -1,11 +1,12 @@
-set nocompatible  " Use Vim settings, rather then Vi settings
-set nobackup
-set nowritebackup
 set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
+set nobackup
+set nocompatible  " Use Vim settings, rather then Vi settings
+set noswapfile
+set nowritebackup
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -82,4 +83,3 @@ nnoremap <Down> :echoe "Use j"<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
-
