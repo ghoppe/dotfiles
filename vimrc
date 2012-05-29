@@ -1,11 +1,12 @@
-set nocompatible  " Use Vim settings, rather then Vi settings
-set nobackup
-set nowritebackup
 set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
+set nobackup
+set nocompatible  " Use Vim settings, rather then Vi settings
+set noswapfile
+set nowritebackup
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -39,8 +40,8 @@ set expandtab
 set list listchars=tab:»·,trail:·
 
 " Local config
-if filereadable(".vimrc.local")
-  source .vimrc.local
+if filereadable("~/.vimrc.local")
+  source ~/.vimrc.local
 endif
 
 " Use Ack instead of Grep when available
@@ -49,7 +50,7 @@ if executable("ack")
 endif
 
 " Color scheme
-colorscheme github
+colorscheme vividchalk
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -63,6 +64,18 @@ let g:snippetsEmu_key = "<S-Tab>"
 " Tab completion options
 set wildmode=list:longest,list:full
 set complete=.,w,t
+
+" Indent if we're at the beginning of a line. Else, do completion.
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
 
 " Tags
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
@@ -83,3 +96,6 @@ nnoremap <Down> :echoe "Use j"<CR>
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
+" Improve syntax highlighting
+au BufRead,BufNewFile Gemfile set filetype=ruby
+au BufRead,BufNewFile *.md set filetype=markdown
