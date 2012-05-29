@@ -15,6 +15,14 @@ alias -g ONE="| awk '{ print \$1}'"
 alias g="git"
 alias gci="git pull --rebase && rake && git push"
 
+# git ghoppe
+alias gps='git push server --all'
+alias gca='git commit -a'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gcl='git config --list'
+
 # Ruby
 alias help-strftime='ruby ~/bin/help-strftime.rb'
 
