@@ -65,7 +65,50 @@ setopt CORRECT CORRECT_ALL
 setopt EXTENDED_GLOB
 
 # Load RVM into a shell session.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
+# iTerm2 window/tab color commands
+#   Requires iTerm2 >= Build 1.0.0.20110804
+#   http://code.google.com/p/iterm2/wiki/ProprietaryEscapeCodes
+tab-color() {
+    echo -ne "\033]6;1;bg;red;brightness;$1\a"
+    echo -ne "\033]6;1;bg;green;brightness;$2\a"
+    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+tab-reset() {
+    echo -ne "\033]6;1;bg;*;default\a"
+}
+
+# Set the title of the xterm (or Terminal window).
+# Defaults to the hostname
+settitle() {
+	if [ $# -eq 0 ]
+	then
+		echo -n "]2;`hostname`"
+	else
+		echo -n "]2;$@"
+	fi
+}
+settitle
+
+export SSH_CMD='/usr/bin/ssh'
+
+# Set the window title if ssh is executed. Reset the title on logout to
+# hostname. Fails to reset if ssh aborted.
+ssh() {
+	TRAPEXIT() { 
+	    tab-reset
+	    settitle
+	}
+	if [[ "$*" =~ "server\.terracommunications" ]]; then
+        tab-color 253 185 19
+    else
+        tab-color 0 255 0
+    fi
+	settitle "$@[$#]"
+    $SSH_CMD "$@"
+}
+
 #autojump
 #Copyright Joel Schaerer 2008, 2009
 #This file is part of autojump
