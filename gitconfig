@@ -6,3 +6,8 @@
   ci = commit -v
   up = !git fetch origin && git rebase origin/master
   mm = !git checkout master && git merge @{-1} --ff-only
+[user]
+	name = Glenn Hoppe
+	email = mail@ghoppe.ca
+[core]
+	excludesfile = ./.gitignore
