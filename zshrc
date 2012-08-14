@@ -104,6 +104,8 @@ ssh() {
 	}
 	if [[ "$*" =~ "server\.terracommunications" ]]; then
         tab-color 253 185 19
+    elif [[ "$*" =~ "icloud\.com" ]]; then
+    		tab-color 0 188 227
     else
         tab-color 0 255 0
     fi
