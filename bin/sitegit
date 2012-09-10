@@ -1,0 +1,105 @@
+#!/bin/sh
+
+# source shflags
+. ~/.bin/src/shflags
+
+# configure sitegit
+DEFINE_boolean 'force' false 'force overwriting' 'f'
+DEFINE_boolean 'verbose' false 'verbose output' 'v'
+DEFINE_string 'hub' 'dirname.git' 'hub git repository directory name' 'g'
+DEFINE_string 'message' 'initial bare website import' 'initial commit message' 'm'
+FLAGS_HELP="USAGE: $0 [flags] dirname"
+
+
+die() {
+  [ $# -gt 0 ] && echo "error: $@" >&2
+  flags_help
+  exit 1
+}
+
+# Setup Prime repository
+setup_prime() {
+	cd $START && mkdir $1 && cd $_
+	APRIME=`pwd`
+	git init
+	git remote add hub $AHUB
+}
+
+# Setup Hub repository
+setup_hub() {
+	cd $START && mkdir $1 && cd $_
+	AHUB=`pwd`
+	git --bare init
+}
+
+# Setup .htaccess
+htaccess_for_git() {
+	Htaccess=$(cat <<__EOF
+# deny access to the top-level git repository:
+RewriteEngine On
+RewriteRule \.git - [F,L]
+__EOF
+	)
+	echo "$Htaccess" >$APRIME/.htaccess
+}
+
+# Setup post-update in Hub
+post_update() {
+	PostUpdate=$(cat <<__EOF
+#!/bin/sh
+	
+echo
+echo "**** Pulling changes into Prime [Hub's post-update hook]"
+echo
+cd $APRIME || exit
+unset GIT_DIR
+git pull hub master
+	
+exec git-update-server-info
+__EOF
+	)
+	echo "$PostUpdate" >$AHUB/hooks/post-update
+	chmod +x $AHUB/hooks/post-update
+}
+
+# Setup post-commit in Prime
+post_commit()
+{
+	PostCommit=$(cat <<__EOF
+#!/bin/sh
+
+echo
+echo "**** Pushing changes to Hub [Prime's post-commit hook]"
+echo
+
+git push hub master
+__EOF
+	)
+	echo "$PostCommit" >$APRIME/.git/hooks/post-commit
+	chmod +x $APRIME/.git/hooks/post-commit
+}
+
+
+# parse the command-line
+FLAGS "$@" || exit 1
+eval set -- "${FLAGS_ARGV}"
+
+# check for filename
+[ $# -gt 0 ] || die 'no repository directory name provided'
+prime=$1
+[ "${FLAGS_hub}" != 'dirname.git' ] || FLAGS_hub="${prime}.git"
+
+[ -f "${filename}" -a ${FLAGS_force} -eq ${FLAGS_FALSE} ] \
+    && die 'directory exists; not overwriting'
+START=`pwd`
+setup_hub   "${FLAGS_hub}"
+setup_prime "${prime}"
+echo "Creating post-update hook in Hub"
+post_update
+echo "Creating post-commit hook in Prime"
+post_commit
+echo "Creating .htaccess file to deny .git access"
+htaccess_for_git
+echo "Committing initial website files"
+cd $APRIME && git add .htaccess && git commit -m"${FLAGS_message}"
+echo "DONE creating Hub and Prime website repositories"
