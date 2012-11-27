@@ -10,4 +10,4 @@
 	name = Glenn Hoppe
 	email = mail@ghoppe.ca
 [core]
-	excludesfile = ./.gitignore
+	excludesfile = /Users/catalog/.gitignore
