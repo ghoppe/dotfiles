@@ -22,8 +22,13 @@ preexec_functions+='preexec_update_git_vars'
 precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
+# Results of last command
+local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+
 # prompt
-export PS1='[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%1~%{$reset_color%}]$(prompt_git_info)%{$reset_color%} '
+PROMPT='${smiley} %{$reset_color%}[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%1~%{$reset_color%}] '
+RPROMPT='%{$fg[cyan]%} $(~/.rvm/bin/rvm-prompt)$(prompt_git_info)%{$reset_color%}'
+
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
 
 # load thoughtbot/dotfiles scripts
