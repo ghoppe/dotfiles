@@ -1,5 +1,6 @@
 unset __CURRENT_GIT_BRANCH
 unset __CURRENT_GIT_BRANCH_STATUS
+unset __CURRENT_GIT_COMMIT_ID
 unset __CURRENT_GIT_BRANCH_IS_DIRTY
 
 local st="$(git status 2>/dev/null)"
@@ -26,4 +27,9 @@ if [[ -n "$st" ]]; then
     if [[ ! $st =~ 'nothing to commit' ]]; then
         __CURRENT_GIT_BRANCH_IS_DIRTY='1'
     fi
+fi
+
+local gs="$(git rev-parse --short HEAD 2>/dev/null)"
+if [[ -n "$gs" ]]; then
+	__CURRENT_GIT_COMMIT_ID=${gs}
 fi
