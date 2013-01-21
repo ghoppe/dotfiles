@@ -16,6 +16,15 @@ setopt auto_cd
 export VISUAL=vim
 export EDITOR=$VISUAL
 
+# Avoid invalid byte sequence in US-ASCII error
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# aliases
+if [ -e "$HOME/.aliases" ]; then
+  source "$HOME/.aliases"
+fi
+
 # vi mode
 bindkey -v
 bindkey "^F" vi-cmd-mode
