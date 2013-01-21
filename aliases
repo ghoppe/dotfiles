@@ -29,11 +29,18 @@ alias cuc="cucumber"
 # Rubygems
 alias gi="gem install"
 alias giv="gem install -v"
+alias be="bundle exec"
 
 # Rails
 alias migrate="rake db:migrate db:test:prepare"
 alias remigrate="rake db:migrate db:migrate:redo db:schema:dump db:test:prepare"
 alias remongrate="rake mongoid:migrate mongoid:migrate:redo"
+
+# Refinerycms dummy
+function refinery_create_demo_user {
+  rails runner "Refinery::User.new(:username => 'demo', :password => 'demo', :email => 'user@example.com').create_first"
+}
+alias dummy='rm -rf spec/dummy && be rake refinery:testing:dummy_app && refinery_create_demo_user'
 
 # Heroku staging
 alias staging='heroku run console --remote staging'
