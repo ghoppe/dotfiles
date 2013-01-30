@@ -29,7 +29,7 @@ alias cuc="cucumber"
 # Rubygems
 alias gi="gem install"
 alias giv="gem install -v"
-alias be="bundle exec"
+alias be="bundle exec"  
 
 # Rails
 alias migrate="rake db:migrate db:test:prepare"
