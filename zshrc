@@ -158,4 +158,4 @@ alias jumpstat="autojump --stat"
 
 function j { local new_path="$(autojump $@)";if [ -n "$new_path" ]; then echo -e "\\033[31m${new_path}\\033[0m"; cd "$new_path";else false; fi }
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source /usr/local/share/chruby/chruby.sh
