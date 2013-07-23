@@ -27,7 +27,7 @@ local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_colo
 
 # prompt
 PROMPT='${smiley} %{$reset_color%}[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%1~%{$reset_color%}] '
-RPROMPT='%{$fg[cyan]%} $(~/.rvm/bin/rvm-prompt)$(prompt_git_info)%{$reset_color%}'
+RPROMPT='%{$fg[cyan]%} $(prompt_git_info)%{$reset_color%}'
 
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
 
