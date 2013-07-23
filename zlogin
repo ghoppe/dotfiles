@@ -23,10 +23,11 @@ precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
 # Results of last command
-local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+# local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+local arrow="%(?,%{$fg[green]%}➤%{$reset_color%},%{$fg[red]%}➤%{$reset_color%})"
 
 # prompt
-PROMPT='${smiley} %{$reset_color%}[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%1~%{$reset_color%}] '
+PROMPT='${arrow} %{$reset_color%}[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%1~%{$reset_color%}] '
 RPROMPT='%{$fg[cyan]%} $(prompt_git_info)%{$reset_color%}'
 
 # PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%} '
