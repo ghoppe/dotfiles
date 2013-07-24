@@ -1,14 +1,23 @@
 [push]
-  default = tracking
-[format]
-  pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
+  default = current
+[color]
+  ui = auto
 [alias]
+  aa = add --all
+  ap = add --patch
+  ca = commit --amend
   ci = commit -v
+  co = checkout
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git remote prune origin && git branch -D $1' -
+  merge-branch = !git checkout master && git merge @{-1}
+  pr = !hub pull-request
+  st = status
   up = !git fetch origin && git rebase origin/master
-  mm = !git checkout master && git merge @{-1} --ff-only
-	lcrev = log --reverse --no-merges --stat @{1}..\n
-[user]
-	name = Glenn Hoppe
-	email = mail@ghoppe.ca
 [core]
-	excludesfile = /Users/catalog/.gitignore
+  excludesfile = ~/.gitignore
+  autocrlf = input
+[merge]
+  ff = only
+[include]
+  path = .gitconfig.local
