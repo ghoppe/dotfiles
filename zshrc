@@ -5,9 +5,14 @@ fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
+for function in ~/.zsh/functions/*; do
+  source $function
+done
+
 # automatically enter directories without cd
 setopt auto_cd
 
+<<<<<<< HEAD
 # use vim as an editor
 export EDITOR=vim
 
@@ -19,6 +24,11 @@ export LC_ALL="en_US.UTF-8"
 if [ -e "$HOME/.aliases" ]; then
   source "$HOME/.aliases"
 fi
+=======
+# use vim as the visual editor
+export VISUAL=vim
+export EDITOR=$VISUAL
+>>>>>>> upstream/master
 
 # vi mode
 bindkey -v
@@ -68,6 +78,7 @@ setopt CORRECT CORRECT_ALL
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
+<<<<<<< HEAD
 # Load RVM into a shell session.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
@@ -160,3 +171,10 @@ alias jumpstat="autojump --stat"
 function j { local new_path="$(autojump $@)";if [ -n "$new_path" ]; then echo -e "\\033[31m${new_path}\\033[0m"; cd "$new_path";else false; fi }
 
 source /usr/local/share/chruby/chruby.sh
+=======
+# aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+>>>>>>> upstream/master
