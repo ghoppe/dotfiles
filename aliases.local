@@ -1,0 +1,2 @@
+# git
+alias ga gca="git commit -am"

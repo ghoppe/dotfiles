@@ -1,0 +1,18 @@
+# Set the window title if ssh is executed. Reset the title on logout to
+# hostname. Fails to reset if ssh aborted.
+
+ssh() {
+	TRAPEXIT() { 
+	    tab-reset
+	    set_title
+	}
+	if [[ "$*" =~ "server\.terracommunications" ]]; then
+        tab-color 253 185 19
+    elif [[ "$*" =~ "icloud\.com" ]]; then
+    		tab-color 0 188 227
+    else
+        tab-color 0 255 0
+    fi
+	set_title "$@[$#]"
+  ssh "$@"
+}

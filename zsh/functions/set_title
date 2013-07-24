@@ -1,0 +1,8 @@
+set_title() {
+	if [ $# -eq 0 ]
+	then
+		echo -n "]2;`hostname`"
+	else
+		echo -n "]2;$@"
+	fi
+}
