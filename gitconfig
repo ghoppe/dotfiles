@@ -21,5 +21,3 @@
   ff = only
 [include]
   path = .gitconfig.local
-[commit]
-  template = ~/.gitmessage

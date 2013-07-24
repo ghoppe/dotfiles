@@ -1,2 +1,11 @@
+# Refinerycms dummy
+function refinery_create_demo_user {
+  rails runner "Refinery::User.new(:username => 'demo', :password => 'demo', :email => 'user@example.com').create_first"
+}
+alias dummy='rm -rf spec/dummy && be rake refinery:testing:dummy_app && refinery_create_demo_user'
+
+# Network
+alias whats-my-ip="curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'"
+
 # git
 alias ga gca="git commit -am"

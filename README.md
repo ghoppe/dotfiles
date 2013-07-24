@@ -8,33 +8,51 @@ Set zsh as your login shell.
 
     chsh -s /bin/zsh
 
-Install [rcm](https://github.com/mike-burns/rcm).
-
-    brew tap mike-burns/rcm
-    brew install rcm
-
 Install
 -------
 
+<<<<<<< HEAD
+[Fork this repo](https://github.com/thoughtbot/dotfiles/fork_select) on Github.
+
+Clone your fork (replace `your-github-name` with your Github name).
+
+    git clone git@github.com:your-github-name/dotfiles.git
+    cd dotfiles
+
+Run the installer.
+
+    ./install.sh
+
+It creates symlinks for all dotfiles in your home directory. You can safely run
+this file multiple times to update.
+
+Included are `zsh` dotfiles. To switch your shell to `zsh` on OS X:
+=======
 Clone onto your laptop:
 
     git clone git://github.com/thoughtbot/dotfiles.git
 
 (Or, [fork and keep your fork
-updated](http://robots.thoughtbot.com/keeping-a-github-fork-updated)).
+updated](http://robots.thoughtbot.com/post/5133345960)).
 
 Install:
+>>>>>>> upstream/master
 
-    rcup -d dotfiles -x README.md -x LICENSE
+    cd dotfiles
+    ./install.sh
 
-This will create symlinks for config files in your home directory. The
-`-x` options, which exclude the `README.md` and `LICENSE` files, are
-needed during installation but can be skipped once the `.rcrc`
-configuration file is symlinked in.
+This will create symlinks for config files in your home directory.
 
-You can safely run `rcup` multiple times to update:
+<<<<<<< HEAD
+Your master branch is meant for your customizations. Use the `upstream` branch
+to get thoughtbot's updates.
 
-    rcup
+Set up upstream
+---------------
+
+Do this once:
+=======
+You can safely run `./install.sh` multiple times to update.
 
 Make your own customizations
 ----------------------------
@@ -44,16 +62,21 @@ Put your customizations in dotfiles appended with `.local`:
 * `~/.aliases.local`
 * `~/.gitconfig.local`
 * `~/.gvimrc.local`
-* `~/.tmux.conf.local`
 * `~/.vimrc.local`
-* `~/.vimrc.bundles.local`
 * `~/.zshrc.local`
 
 For example, your `~/.aliases.local` might look like this:
+>>>>>>> upstream/master
 
     # Productivity
     alias todo='$EDITOR ~/.todo'
 
+<<<<<<< HEAD
+Update upstream
+---------------
+
+Make changes in files that are not in thoughtbot's dotfiles.
+=======
 Your `~/.gitconfig.local` might look like this:
 
     [alias]
@@ -63,6 +86,7 @@ Your `~/.gitconfig.local` might look like this:
     [user]
       name = Dan Croak
       email = dan@thoughtbot.com
+>>>>>>> upstream/master
 
 Your `~/.zshrc.local` might look like this:
 
@@ -71,11 +95,6 @@ Your `~/.zshrc.local` might look like this:
 
     # recommended by brew doctor
     export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
-Your `~/.vimrc.bundles.local` might look like this:
-
-    Bundle 'Lokaltog/vim-powerline'
-    Bundle 'stephenmckinney/vim-solarized-powerline'
 
 What's in it?
 -------------
@@ -97,7 +116,7 @@ What's in it?
 * Use [GitHub color scheme](https://github.com/croaky/vim-colors-github).
 * Use [Vundle](https://github.com/gmarik/vundle) to manage plugins.
 
-[tmux](http://robots.thoughtbot.com/a-tmux-crash-course)
+[tmux](http://robots.thoughtbot.com/post/2641409235/a-tmux-crash-course)
 configuration:
 
 * Improve color resolution.

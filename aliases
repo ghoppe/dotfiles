@@ -1,6 +1,3 @@
-# Todo
-alias todo='$EDITOR ~/.todo'
-
 # Unix
 alias tlf="tail -f"
 alias ln='ln -v'
@@ -36,6 +33,11 @@ alias b="bundle"
 # Tests and Specs
 alias t="ruby -I test"
 alias cuc="bundle exec cucumber"
+
+# Tests and Specs
+alias t="ruby -I test"
+alias s="rspec"
+alias cuc="cucumber"
 
 # Rubygems
 alias gi="gem install"
