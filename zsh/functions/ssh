@@ -14,5 +14,5 @@ ssh() {
         tab-color 0 255 0
     fi
 	set_title "$@[$#]"
-  ssh "$@"
+  command ssh "$@"
 }

@@ -5,7 +5,7 @@ set_title
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-# Chruby
+# Auto-switch current Ruby when cd between projects
 source /usr/local/share/chruby/chruby.sh
 
 #autojump
