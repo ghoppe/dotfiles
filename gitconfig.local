@@ -1,3 +1,5 @@
 [user]
-	name = Glenn Hoppe
-	email = mail@ghoppe.ca
+  name = Glenn Hoppe
+  email = glenn@terracommunications.ca
+[credential]
+  helper = osxkeychain
