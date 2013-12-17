@@ -21,3 +21,8 @@
   ff = only
 [include]
   path = .gitconfig.local
+[user]
+	name = Glenn Hoppe
+	email = glenn@terracommunications.ca
+[mergetool]
+	keepBackup = true
