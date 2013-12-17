@@ -15,4 +15,14 @@
   st = status
   up = !git fetch origin && git rebase origin/master
 [core]
-	excludesfile = /Users/fire/.gitignore
+  excludesfile = ~/.gitignore
+  autocrlf = input
+[merge]
+  ff = only
+[include]
+  path = .gitconfig.local
+[user]
+	name = Glenn Hoppe
+	email = glenn@terracommunications.ca
+[mergetool]
+	keepBackup = true
