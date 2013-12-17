@@ -3,3 +3,5 @@
   email = glenn@terracommunications.ca
 [credential]
   helper = osxkeychain
+[mergetool]
+  keepBackup = true
