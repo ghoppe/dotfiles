@@ -6,7 +6,7 @@ colors
 export CLICOLOR=1
 
 # expand functions in the prompt
-setopt PROMPT_SUBST
+setopt promptsubst
 
 # Include results of last command
 local arrow="%(?,%{$fg[green]%}➤%{$reset_color%},%{$fg[red]%}➤%{$reset_color%})"
@@ -78,3 +78,6 @@ RPROMPT='%{$fg[cyan]%} $(vcs_info && echo $vcs_info_msg_0_)%{$reset_color%}'
 
 # load thoughtbot/dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
+
+# Local config
+[[ -f ~/.zlogin.local ]] && source ~/.zlogin.local
