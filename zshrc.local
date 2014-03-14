@@ -5,6 +5,9 @@ set_title
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# recommended by brew doctor
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
 # Auto-switch current Ruby when cd between projects
 source /usr/local/share/chruby/chruby.sh
 
